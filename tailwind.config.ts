@@ -9,8 +9,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#00FF00", // 초록색
+        secondary: "#000000", // 검정색
+      },
+      fontFamily: {
+        pretendard: ["var(--font-pretendard)"],
+        jalnan2: ["var(--font-jalnan2)"],
       },
     },
   },
