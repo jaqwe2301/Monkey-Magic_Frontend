@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={`${pretendard.variable} font-pretendard`}>
+      <body className={`${pretendard.variable} font-pretendard bg-black`}>
         <VoteProvider>{children}</VoteProvider>
       </body>
     </html>
