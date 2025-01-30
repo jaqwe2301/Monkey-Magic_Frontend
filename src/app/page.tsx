@@ -1,6 +1,7 @@
 "use client";
 
 // import VotingPage from "../components/Vote";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,6 +16,8 @@ import Ticket from "public/asssets/ticket.svg";
 import Insta from "public/asssets/instagram.svg";
 
 export default function Main() {
+  const [showNextDiv, setShowNextDiv] = useState(false);
+
   // return <VotingPage />;
   return (
     <div className="w-screen relative flex flex-col items-center max-w-[600px]">
@@ -44,6 +47,7 @@ export default function Main() {
             duration: 2,
             ease: "easeOut",
           }}
+          onAnimationComplete={() => setShowNextDiv(true)}
         >
           <Image
             src={title.src}
@@ -63,7 +67,13 @@ export default function Main() {
             <p>전체이용가밴드</p>
           </div>
         </motion.div>
-        <div className="w-full flex items-center justify-center gap-5 mt-4">
+        {showNextDiv && (
+          <motion.div
+            className="w-full flex items-center justify-center gap-5 mt-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
           <Link
             className="text-white flex items-center justify-center gap-[10px] w-[130px] h-[50px] rounded-xl bg-[#363636]"
             href="www.tinyticket.net/event-manager/EM7TcbpyPZWt"
@@ -78,7 +88,8 @@ export default function Main() {
             <Insta />
             인스타그램
           </Link>
-        </div>
+          </motion.div>
+        )}
       </div>
 
       <Image
