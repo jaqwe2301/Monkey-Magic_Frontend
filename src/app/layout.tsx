@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { VoteProvider } from "@/contexts/VoteContainer";
 import localFont from "next/font/local";
-import "./globals.css";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: "Monkey Magic",
@@ -22,7 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={`${pretendard.variable} font-pretendard bg-black`}>
+      <body
+        className={`${pretendard.variable} font-pretendard bg-[#080404] flex flex-col items-center`}
+      >
         <VoteProvider>{children}</VoteProvider>
       </body>
     </html>

@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .top-limited-monkey-face {
+    top: clamp(0px, 12vw, 72px);
+  }
+  .top-limited-title {
+    top: clamp(0px, 60vw, 360px);
+  }
+  .font-size-limited-date {
+    font-size: clamp(0px, 9vw, 54px);
+  }
+  .font-size-limited-teams {
+    font-size: clamp(0px, 3vw, 18px);
+  }
+  .margin-top-limited-date {
+    font-size: clamp(0px, 6vw, 36px);
+  }
+}

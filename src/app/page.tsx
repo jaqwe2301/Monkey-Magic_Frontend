@@ -3,6 +3,7 @@
 // import VotingPage from "../components/Vote";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 import bgGreen from "public/images/bg-green.png";
 import coverBlack from "public/images/cover-black.png";
@@ -10,13 +11,16 @@ import monkeyFace from "public/images/monkey-face.png";
 import title from "public/images/title.png";
 import coverScratch from "public/images/cover-scratch.png";
 
+import Ticket from "public/asssets/ticket.svg";
+import Insta from "public/asssets/instagram.svg";
+
 export default function Main() {
   // return <VotingPage />;
   return (
-    <div className="w-screen relative flex flex-col items-center max-w-[700px]">
+    <div className="w-screen relative flex flex-col items-center max-w-[600px]">
       {/* 다른 이미지들 */}
       <motion.div
-        className="absolute top-[12vw] z-10 w-[45vw]"
+        className="absolute top-limited-monkey-face z-10 w-[45vw] max-w-[270px]"
         initial={{ y: "-100%", opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
@@ -31,33 +35,52 @@ export default function Main() {
       </motion.div>
 
       {/* title 애니메이션 */}
-      <motion.div
-        className="absolute top-[60vw] z-20 w-[95vw]"
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{
-          duration: 2,
-          ease: "easeOut",
-        }}
-      >
-        <Image
-          src={title.src}
-          alt="title"
-          width={1123}
-          height={575}
-          className="w-full"
-        />
-        <p className="mt-[6vw] text-[9vw] font-bold text-white w-full text-center">
-          25.02.04.7PM
-        </p>
-        <div className="flex w-full justify-center gap-3 text-[3vw] font-bold text-white">
-          <p>이세현밴드</p>
-          <p>최수웅</p>
-          <p>Wednesday</p>
-          <p>오프더로드</p>
-          <p>전체이용가밴드</p>
+      <div className="absolute top-limited-title z-20 w-full flex flex-col items-center">
+        <motion.div
+          className="w-[95vw] max-w-[570px]"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{
+            duration: 2,
+            ease: "easeOut",
+          }}
+        >
+          <Image
+            src={title.src}
+            alt="title"
+            width={1123}
+            height={575}
+            className="w-full"
+          />
+          <p className="margin-top-limited-date font-size-limited-date font-bold text-white w-full text-center">
+            25.02.04.7PM
+          </p>
+          <div className="flex w-full justify-center gap-3 font-size-limited-teams font-bold text-white">
+            <p>이세현밴드</p>
+            <p>최수웅</p>
+            <p>Wednesday</p>
+            <p>오프더로드</p>
+            <p>전체이용가밴드</p>
+          </div>
+        </motion.div>
+        <div className="w-full flex items-center justify-center gap-5 mt-4">
+          <Link
+            className="text-white flex items-center justify-center gap-[10px] w-[130px] h-[50px] rounded-xl bg-[#363636]"
+            href="www.tinyticket.net/event-manager/EM7TcbpyPZWt"
+          >
+            <Ticket />
+            티켓 구매
+          </Link>
+          <Link
+            className="text-white flex items-center justify-center gap-[10px] w-[130px] h-[50px] rounded-xl bg-[#363636]"
+            href="https://www.instagram.com/monkeymagic.official"
+          >
+            <Insta />
+            인스타그램
+          </Link>
         </div>
-      </motion.div>
+      </div>
+
       <Image
         src={coverBlack.src}
         className="absolute top-0 left-0 z-10"
@@ -65,13 +88,23 @@ export default function Main() {
         width={1207}
         height={1701}
       />
-      <Image
-        src={coverScratch.src}
-        alt="cover-scratch"
-        width={1208}
-        height={1698}
-        className="absolute w-full left-0 top-0 z-20 opacity-10"
-      />
+      <div className="absolute left-0 top-0 z-20 opacity-10">
+        <Image
+          src={coverScratch.src}
+          alt="cover-scratch"
+          width={1208}
+          height={1698}
+          // className="absolute left-0 top-0 z-20 opacity-10"
+        />
+        {/* <Image
+          src={coverScratch.src}
+          alt="cover-scratch"
+          width={1208}
+          height={1698}
+          className="rotate-180"
+          // className="absolute left-0 top-0 z-20 opacity-10"
+        /> */}
+      </div>
       {/* bgGreen 애니메이션 */}
       <motion.div
         className="absolute w-full z-0"
@@ -88,13 +121,7 @@ export default function Main() {
           ease: "easeInOut",
         }}
       >
-        <Image
-          src={bgGreen.src}
-          alt="bg-green"
-          width={1209}
-          height={1702}
-          className=""
-        />
+        <Image src={bgGreen.src} alt="bg-green" width={1209} height={1702} />
       </motion.div>
     </div>
   );
