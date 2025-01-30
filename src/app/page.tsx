@@ -81,7 +81,7 @@ export default function Main() {
           >
             <Link
               className="text-white flex items-center justify-center gap-[10px] w-[130px] h-[50px] rounded-xl bg-[#363636]"
-              href="www.tinyticket.net/event-manager/EM7TcbpyPZWt"
+              href="https://www.tinyticket.net/event-manager/EM7TcbpyPZWt"
             >
               <Ticket />
               티켓 구매
@@ -105,7 +105,7 @@ export default function Main() {
         height={1701}
       />
       <div
-        className="absolute left-0 top-0 z-20 opacity-10 min-h-screen bg-cover bg-repeat-y w-screen"
+        className="absolute left-0 top-0 z-20 opacity-10 min-h-screen bg-cover bg-repeat-y w-screen pointer-events-none"
         style={{ backgroundImage: `url(${coverScratch.src})` }}
       >
         {/* <Image
