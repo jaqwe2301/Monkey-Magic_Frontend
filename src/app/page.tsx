@@ -74,20 +74,20 @@ export default function Main() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-          <Link
-            className="text-white flex items-center justify-center gap-[10px] w-[130px] h-[50px] rounded-xl bg-[#363636]"
-            href="www.tinyticket.net/event-manager/EM7TcbpyPZWt"
-          >
-            <Ticket />
-            티켓 구매
-          </Link>
-          <Link
-            className="text-white flex items-center justify-center gap-[10px] w-[130px] h-[50px] rounded-xl bg-[#363636]"
-            href="https://www.instagram.com/monkeymagic.official"
-          >
-            <Insta />
-            인스타그램
-          </Link>
+            <Link
+              className="text-white flex items-center justify-center gap-[10px] w-[130px] h-[50px] rounded-xl bg-[#363636]"
+              href="www.tinyticket.net/event-manager/EM7TcbpyPZWt"
+            >
+              <Ticket />
+              티켓 구매
+            </Link>
+            <Link
+              className="text-white flex items-center justify-center gap-[10px] w-[130px] h-[50px] rounded-xl bg-[#363636]"
+              href="https://www.instagram.com/monkeymagic.official"
+            >
+              <Insta />
+              인스타그램
+            </Link>
           </motion.div>
         )}
       </div>
@@ -99,14 +99,17 @@ export default function Main() {
         width={1207}
         height={1701}
       />
-      <div className="absolute left-0 top-0 z-20 opacity-10">
-        <Image
+      <div
+        className="absolute left-0 top-0 z-20 opacity-10 min-h-screen bg-cover bg-repeat-y w-screen"
+        style={{ backgroundImage: `url(${coverScratch.src})` }}
+      >
+        {/* <Image
           src={coverScratch.src}
           alt="cover-scratch"
           width={1208}
           height={1698}
           // className="absolute left-0 top-0 z-20 opacity-10"
-        />
+        /> */}
         {/* <Image
           src={coverScratch.src}
           alt="cover-scratch"
