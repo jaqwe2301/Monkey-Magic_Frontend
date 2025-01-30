@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Head from "next/head";
 import Link from "next/link";
 
 import bgGreen from "public/images/bg-green.png";
@@ -14,6 +15,10 @@ import coverScratch from "public/images/cover-scratch.png";
 
 import Ticket from "public/asssets/ticket.svg";
 import Insta from "public/asssets/instagram.svg";
+
+<Head>
+  <link rel="preload" as="image" href={coverScratch.src} />
+</Head>;
 
 export default function Main() {
   const [showNextDiv, setShowNextDiv] = useState(false);
