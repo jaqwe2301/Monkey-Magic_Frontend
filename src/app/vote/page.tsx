@@ -5,13 +5,9 @@ import { useVote } from "@/contexts/VoteContainer";
 import { AxiosError } from "axios"; // AxiosError 타입 추가
 import Image from "next/image";
 import coverScratch from "public/images/cover-scratch.png";
+import { useRouter } from "next/navigation";
 
-import {
-  requestOtpApi,
-  verifyOtpApi,
-  voteApi,
-  checkVoteStatusApi,
-} from "@/api/voteApi";
+import { requestOtpApi, verifyOtpApi, voteApi } from "@/api/voteApi";
 
 import Green from "public/images/jewel/animated_gem_green.gif";
 import Blue from "public/images/jewel/animated_gem_blue_reverse.gif";
@@ -28,6 +24,8 @@ const teams = [
 ];
 
 export default function VotePage() {
+  const router = useRouter();
+
   const { phoneNumber, setPhoneNumber } = useVote();
   const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
   const [showModal, setShowModal] = useState(true);
@@ -66,11 +64,11 @@ export default function VotePage() {
   const handleVerifyOtp = async () => {
     try {
       setError("");
-      const response = await verifyOtpApi(inputPhoneNumber, otp);
+      await verifyOtpApi(inputPhoneNumber, otp);
       setPhoneNumber(inputPhoneNumber);
       setShowModal(false);
       setIsVerified(true);
-      alert(response.message);
+      // alert(response.message);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         setError(error.response?.data?.message || "인증번호 확인 실패");
@@ -95,6 +93,7 @@ export default function VotePage() {
     try {
       await voteApi(phoneNumber, selectedTeams[0], selectedTeams[1]);
       alert("투표가 완료되었습니다.");
+      router.push("/");
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         setError(error.response?.data?.message || "투표 중 오류 발생");
@@ -133,14 +132,17 @@ export default function VotePage() {
           height={1698}
         />
       </div>
-      {/* {showModal && (
-        <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+      {showModal && (
+        <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center z-20 text-black">
           <div className="bg-white p-6 rounded shadow-lg w-4/5 max-w-md">
-            <h2 className="text-lg font-bold mb-4">휴대폰 번호 입력</h2>
+            <h1 className="font-bold mb-4 w-full text-center">
+              휴대폰 인증 후, 투표가 가능합니다.
+            </h1>
+            {/* <h2 className="text-lg font-bold mb-4">휴대폰 번호 입력</h2> */}
             <input
               type="text"
               placeholder="휴대폰 번호 입력"
-              className="border w-full p-2 mb-4"
+              className="border w-full p-2 mb-4 font-pretendard"
               onChange={(e) => {
                 setError("");
                 setInputPhoneNumber(e.target.value);
@@ -158,7 +160,7 @@ export default function VotePage() {
                 <input
                   type="text"
                   placeholder="인증번호 입력"
-                  className="border w-full p-2 my-4"
+                  className="border w-full p-2 my-4 font-pretendard"
                   onChange={(e) => setOtp(e.target.value)}
                 />
                 <button
@@ -172,45 +174,51 @@ export default function VotePage() {
             {error && <p className="text-red-500 mt-2">{error}</p>}
           </div>
         </div>
-      )} */}
+      )}
 
-      <h1 className="text-3xl font-bold mb-6 text-center">💎 공연 투표 💎</h1>
-      <p className="text-sm mb-6 text-gray-300 text-center">
-        원하는 두 팀을 선택하고 투표하세요!
-      </p>
+      <div
+        className={`w-full flex flex-col items-center transition-opacity duration-700 ease-in-out ${
+          showModal ? "opacity-0" : ""
+        }`}
+      >
+        <h1 className="text-3xl font-bold mb-6 text-center">💎 공연 투표 💎</h1>
+        <p className="text-sm mb-6 text-gray-300 text-center">
+          원하는 두 팀을 선택하고 투표하세요!
+        </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full max-w-md justify-center">
-        {teams.map((team) => (
-          <div
-            key={team.name}
-            className={`relative p-4 text-center border-2 rounded-lg cursor-pointer transition-all duration-300
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full max-w-md justify-center">
+          {teams.map((team) => (
+            <div
+              key={team.name}
+              className={`relative p-4 text-center border-2 rounded-lg cursor-pointer transition-all duration-300
             ${
               selectedTeams.includes(team.name)
                 ? "border-yellow-400 bg-opacity-70 scale-105 shadow-lg shadow-yellow-500/50"
                 : "border-gray-400 bg-opacity-30"
             }`}
-            onClick={() => toggleTeamSelection(team.name)}
-          >
-            <Image
-              src={team.color.src}
-              alt={team.name}
-              className="w-16 h-16 mx-auto mb-2 animate-pulse"
-              width={1950}
-              height={1950}
-            />
-            <span className="block font-semibold text-lg">{team.name}</span>
-          </div>
-        ))}
+              onClick={() => toggleTeamSelection(team.name)}
+            >
+              <Image
+                src={team.color.src}
+                alt={team.name}
+                className="w-16 h-16 mx-auto mb-2 animate-pulse"
+                width={1950}
+                height={1950}
+              />
+              <span className="block font-semibold text-lg">{team.name}</span>
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={handleVoteSubmit}
+          className="mt-8 px-6 py-3 text-lg font-semibold rounded-md bg-[#008746] text-white shadow-md transition-all duration-300"
+        >
+          투표하기
+        </button>
+
+        {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
       </div>
-
-      <button
-        // onClick={handleVoteSubmit}
-        className="mt-8 px-6 py-3 text-lg font-semibold rounded-md bg-[#008746] text-white shadow-md transition-all duration-300"
-      >
-        투표하기
-      </button>
-
-      {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
     </div>
   );
 }
