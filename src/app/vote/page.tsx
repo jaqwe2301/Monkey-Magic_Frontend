@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useVote } from "@/contexts/VoteContainer";
 import { AxiosError } from "axios"; // AxiosError 타입 추가
 import Image from "next/image";
+import coverScratch from "public/images/cover-scratch.png";
+
 import {
   requestOtpApi,
   verifyOtpApi,
@@ -114,7 +116,23 @@ export default function VotePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white flex flex-col items-center justify-center p-6">
+    <div className="font-ssshinb7 max-w-[600px] w-full bg-gradient-to-b text-white flex flex-col items-center justify-center p-6 h-screen">
+      <div className="absolute w-full top-0 left-0 z-10 opacity-10 max-h-screen overflow-y-hidden pointer-events-none">
+        <Image
+          className="w-full"
+          alt="scratch"
+          src={coverScratch.src}
+          width={1210}
+          height={1698}
+        />
+        <Image
+          className="w-full"
+          alt="scratch"
+          src={coverScratch.src}
+          width={1210}
+          height={1698}
+        />
+      </div>
       {/* {showModal && (
         <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
           <div className="bg-white p-6 rounded shadow-lg w-4/5 max-w-md">

@@ -14,7 +14,7 @@ export default {
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
-        jalnan2: ["var(--font-jalnan2)"],
+        ssshinb7: ["var(--font-ssshinb7)"],
       },
     },
   },

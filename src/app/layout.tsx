@@ -9,10 +9,17 @@ export const metadata: Metadata = {
 };
 
 const pretendard = localFont({
-  src: "../PretendardVariable.woff2",
+  src: "../styles/fonts/PretendardVariable.woff2",
   display: "swap",
   weight: "45 920",
   variable: "--font-pretendard",
+});
+
+const ssshinb7 = localFont({
+  src: "../styles/fonts/SSShinb7Regular.ttf",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-ssshinb7",
 });
 
 export default function RootLayout({
@@ -23,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${pretendard.variable} font-pretendard bg-[#080404] flex flex-col items-center`}
+        className={`${pretendard.variable} ${ssshinb7.variable} font-pretendard bg-[#080404] flex flex-col items-center`}
       >
         <VoteProvider>{children}</VoteProvider>
       </body>
