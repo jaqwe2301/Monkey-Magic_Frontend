@@ -64,7 +64,7 @@ export const checkVoteStatusApi = async (phoneNumber: string) => {
 export const getVoteResultsApi = async () => {
   try {
     const response = await Instance.get("/votes");
-    return response.data;
+    return response.data.votes;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
       throw new Error(error.response?.data?.message || "결과 조회 실패");
