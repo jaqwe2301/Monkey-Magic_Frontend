@@ -15,6 +15,7 @@ import coverScratch from "public/images/cover-scratch.png";
 
 import Ticket from "public/asssets/ticket.svg";
 import Insta from "public/asssets/instagram.svg";
+import Vote from "public/asssets/vote.svg";
 
 <Head>
   <link rel="preload" as="image" href={coverScratch.src} />
@@ -81,10 +82,10 @@ export default function Main() {
           >
             <Link
               className="text-white flex items-center justify-center gap-[10px] w-[130px] h-[50px] rounded-xl bg-[#363636]"
-              href="https://www.tinyticket.net/event-manager/EM7TcbpyPZWt"
+              href="/vote"
             >
-              <Ticket />
-              티켓 구매
+              <Vote />
+              공연 투표
             </Link>
             <Link
               className="text-white flex items-center justify-center gap-[10px] w-[130px] h-[50px] rounded-xl bg-[#363636]"
